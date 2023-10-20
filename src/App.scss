@@ -1,0 +1,65 @@
+@use '../node_modules/scss-reset/reset';
+@import '../src/assets/styles/vars';
+@import '../src/assets/styles/mixins';
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('../src/assets/fonts/RobotoCondensed-Bold.ttf') format('truetype');
+  font-display: swap;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.location {
+  font-family: 'Arial', sans-serif;
+  width: 320px;
+
+  .location-label {
+    @include caption;
+    margin-bottom: 4px;
+  }
+
+  .location-search {
+    border: 1px solid $border-primary;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: $bg-neutral;
+    padding: 8px 8px 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 50px;
+
+    &.open,
+    &:hover {
+      border-color: $text-tertiary;
+    }
+  }
+
+  .location-input {
+    @include body-accent;
+    letter-spacing: -0.02em;
+    flex: 1;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    &::placeholder {
+      font-family: Roboto Condensed;
+      color: $text-primary;
+      opacity: 1;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .location-button {
+    border: none;
+    cursor: pointer;
+  }
+}

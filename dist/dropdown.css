@@ -1,0 +1,89 @@
+.location-dropdown {
+  border: 1px solid rgba(7, 0, 15, 0.1019607843);
+  border-radius: 12px;
+  margin: 8px 0;
+  width: 100%;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.location-dropdown::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: -webkit-gradient(linear, left bottom, left top, from(#ffffff), to(transparent));
+  background: linear-gradient(to top, #ffffff, transparent);
+  pointer-events: none;
+  border-radius: 12px;
+}
+.location-dropdown .location-tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(7, 0, 15, 0.1019607843);
+  font-family: Roboto Condensed;
+}
+.location-dropdown .location-tabs .location-tab {
+  padding: 14.5px 0;
+  margin-right: 16px;
+  cursor: pointer;
+  color: rgba(7, 0, 15, 0.4);
+}
+.location-dropdown .location-tabs .location-tab:hover {
+  color: #07000f;
+}
+.location-dropdown .location-tabs .location-tab.active {
+  position: relative;
+  color: #07000f;
+  border-bottom: 1px solid #07000f;
+  -webkit-transform: translateY(1px);
+      -ms-transform: translateY(1px);
+          transform: translateY(1px);
+}
+.location-dropdown .location-tabs .location-tab.active:hover {
+  border-width: 2px;
+}
+.location-dropdown .location-content {
+  padding-right: 8px;
+}
+.location-dropdown .nav-list {
+  list-style-type: none;
+  padding-top: 8px;
+  margin: 0;
+  max-height: 304px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #07000f transparent;
+}
+.location-dropdown .nav-list::-webkit-scrollbar {
+  width: 4px;
+}
+.location-dropdown .nav-list::-webkit-scrollbar-thumb {
+  background: #07000f;
+  border-radius: 12px;
+  max-height: 160px;
+}
+.location-dropdown .nav-list .dropdown-list-item {
+  padding: 12px 4px 12px 16px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.location-dropdown .nav-list .dropdown-list-item:last-child {
+  border-bottom: none;
+}
+.location-dropdown .nav-list .dropdown-list-item:hover {
+  background-color: rgba(2, 22, 45, 0.1);
+}

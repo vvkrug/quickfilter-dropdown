@@ -1,0 +1,32 @@
+@import '../../assets/styles/vars';
+@import '../../assets/styles/mixins';
+
+.baseCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: $border-primary;
+}
+
+.filledCircle {
+  @extend .baseCircle;
+  color: $text-on-color;
+  background-color: $bg-accent;
+  &:hover {
+    background-color: $bg-accent-hover;
+  }
+
+  span {
+    @include body-accent;
+    font-family: Roboto Condensed;
+  }
+}
+
+.outlinedCircle {
+  @extend .baseCircle;
+  border-width: 1px;
+  border-style: solid;
+}
