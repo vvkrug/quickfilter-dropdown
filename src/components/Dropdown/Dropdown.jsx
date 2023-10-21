@@ -8,7 +8,7 @@ const districts = ["Центральный", "Северный", "Северо-�
 const areas = ["Арбат", "Басманный", "Замоскворечье", "Красносельский", "Мещанский", "Пресненский", "Таганский", "Тверской", "Хамовники", "Якиманка"];
 const metroStations = ["Авиамоторная", "Академическая", "Александровский сад", "Алексеевская", "Алма-Атинская", "Алтуфьево", "Аннино", "Арбатская", "Аэропорт", "Бабушкинская"];
 
-export const Dropdown = ({ onSelect, selectedItems }) => { // Передаём selectedItems как проп для сохранения выбранных элементов
+export const Dropdown = ({ onSelect, selectedItems, searchText }) => { // Передаём selectedItems как проп для сохранения выбранных элементов
   const [activeTab, setActiveTab] = useState(1);
 
 	const handleItemSelect = (item) => {
@@ -23,17 +23,20 @@ export const Dropdown = ({ onSelect, selectedItems }) => { // Передаём s
 	
 
   const renderList = (items) => (
-		<ul className="nav-list">
-			{items.map(item => (
-				<li className="dropdown-list-item" key={item} onClick={() => handleItemSelect(item)}>
-					{item}
-					<IconCircle 
-						type="outlined" 
-						isSelected={selectedItems.includes(item)} 
-					/>
-				</li>
-			))}
-		</ul>
+    <ul className="nav-list">
+      {items
+        .filter(item => item.toLowerCase().includes(searchText.toLowerCase())) // Фильтруем элементы на основе текста поиска
+        .map(item => (
+          <li className="dropdown-list-item" key={item} onClick={() => handleItemSelect(item)}>
+            {item}
+            <IconCircle 
+              type="outlined" 
+              isSelected={selectedItems.includes(item)} 
+            />
+          </li>
+        ))
+      }
+    </ul>
   );
 
   return (
