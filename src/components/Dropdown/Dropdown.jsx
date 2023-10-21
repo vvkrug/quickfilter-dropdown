@@ -8,9 +8,8 @@ const districts = ["Центральный", "Северный", "Северо-�
 const areas = ["Арбат", "Басманный", "Замоскворечье", "Красносельский", "Мещанский", "Пресненский", "Таганский", "Тверской", "Хамовники", "Якиманка"];
 const metroStations = ["Авиамоторная", "Академическая", "Александровский сад", "Алексеевская", "Алма-Атинская", "Алтуфьево", "Аннино", "Арбатская", "Аэропорт", "Бабушкинская"];
 
-export const Dropdown = ({ onSelect }) => {
+export const Dropdown = ({ onSelect, selectedItems }) => { // Передаём selectedItems как проп для сохранения выбранных элементов
   const [activeTab, setActiveTab] = useState(1);
-  const [selectedItems, setSelectedItems] = useState([]);
 
 	const handleItemSelect = (item) => {
 		let updatedItems;
@@ -18,8 +17,7 @@ export const Dropdown = ({ onSelect }) => {
 			updatedItems = selectedItems.filter(i => i !== item);
 		} else {
 			updatedItems = [...selectedItems, item];
-		}
-		setSelectedItems(updatedItems);
+		}		
 		onSelect(updatedItems);
 	};
 	

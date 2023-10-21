@@ -31,7 +31,8 @@ const App = () => {
 					number={selectedItems.length}
 				/>
       </div>
-      {isOpen && <Dropdown onSelect={handleDropdownSelect} />}
+			{ /* Передаём состояние selectedItems для его сохранения между рендерами компонента Dropdown */}
+      {isOpen && <Dropdown onSelect={handleDropdownSelect} selectedItems={selectedItems} />}
     </section>
   );
 };
