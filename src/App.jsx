@@ -9,12 +9,10 @@ const App = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [searchText, setSearchText] = useState('');
   const dropdownRef = useRef(null);
-	// const inputRef = useRef(null); 
 
-	const handleClickOutside = (event) => {
-    // проверяем, не является ли элемент, по которому был произведен клик, полем ввода
+	const handleClickOutside = (event) => {    
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsOpen(false);  // закрываем выпадающий список, если клик произошел вне компонента и вне поля ввода
+      setIsOpen(false);  // Закрываем выпадающий список, если клик произошел вне компонента
     }
   };
 
@@ -42,9 +40,8 @@ const App = () => {
 					placeholder={'ЖК, ОКРУГ, РАЙОН, МЕТРО'}
 					className="location-input" 
 					onClick={() => setIsOpen(true)} // Открытие дропдауна при клике на инпут
-					value={searchText} // Связываем введенное значение
-					onChange={(e) => setSearchText(e.target.value)} // Обработчик изменений текста поиска
-					// ref={inputRef}
+					value={searchText} // Связываем введенное значение в поле поиска
+					onChange={(e) => setSearchText(e.target.value)} // Обработчик изменений текста поиска					
 				/>
 				<IconCircle 
 					type="filled" 

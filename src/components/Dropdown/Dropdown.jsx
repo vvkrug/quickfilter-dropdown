@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IconCircle } from '../IconCircle/IconCircle';
 import { InteractiveList } from '../InteractiveList/InteractiveList';
 import './dropdown.scss';
@@ -10,6 +10,7 @@ const metroStations = ["Авиамоторная", "Академическая",
 
 export const Dropdown = ({ onSelect, selectedItems, searchText }) => { // Передаём selectedItems как проп для сохранения выбранных элементов
   const [activeTab, setActiveTab] = useState(1);
+  const dropdownRef = useRef(null);
 
 	const handleItemSelect = (item) => {
 		let updatedItems;
@@ -39,8 +40,19 @@ export const Dropdown = ({ onSelect, selectedItems, searchText }) => { // Пер
     </ul>
   );
 
+	// Скрываем стиль нижней части списка при малом количестве элементов (отсутствии скроллбара)
+  useEffect(() => {
+    const dropdownElement = dropdownRef.current;
+    const contentElement = dropdownElement.querySelector('.nav-list');
+    if (contentElement.scrollHeight <= contentElement.clientHeight) {
+      dropdownElement.classList.add('no-scrollbar');
+    } else {
+      dropdownElement.classList.remove('no-scrollbar');
+    }
+  }, [selectedItems, searchText]);
+
   return (
-    <div className="location-dropdown">
+    <div className="location-dropdown" ref={dropdownRef}>
       <ul className="location-tabs">
         {['ЖК', 'ОКРУГ', 'РАЙОН', 'МЕТРО'].map((tabName, index) => (
           <li

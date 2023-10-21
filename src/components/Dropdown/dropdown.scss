@@ -90,3 +90,7 @@
     }
   }
 }
+
+.no-scrollbar::after {
+  display: none;
+}
