@@ -1,8 +1,10 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+import React, { memo } from 'react';
 import { IconCircle } from '../IconCircle/IconCircle';
 import './ListItem.scss';
 
-export const ListItem = ({ item, isSelected, onItemSelect }) => (
+// Мемоизируем компонент для предотвращения ререндеров при поиске и выборе элементов
+export const ListItem = memo(({ item, isSelected, onItemSelect }) => (
   <li className="dropdown-list-item" onClick={() => onItemSelect(item)}>
     {item}
     <IconCircle
@@ -10,4 +12,11 @@ export const ListItem = ({ item, isSelected, onItemSelect }) => (
       isSelected={isSelected}
     />
   </li>
-);
+));
+
+// Предотвращаем баги и улучшаем документированность кода, валидируя пропсы
+ListItem.propTypes = {
+  item: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  onItemSelect: PropTypes.func.isRequired,
+};
