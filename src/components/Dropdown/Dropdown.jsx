@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { IconCircle } from '../IconCircle/IconCircle';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { InteractiveList } from '../InteractiveList/InteractiveList';
+import { ListItem } from '../ListItem/ListItem';
 import './dropdown.scss';
 
 const residentialComplexes = ["Изумрудные холмы", "Новое Тушино", "Скай Форт", "Лайф-Ботанический сад", "Зиларт", "Сити-квартал Люблино", "Московский", "Северное Чертаново", "Панорама", "Нахимов"];
@@ -12,33 +12,31 @@ export const Dropdown = ({ onSelect, selectedItems, searchText }) => { // Пер
   const [activeTab, setActiveTab] = useState(1);
   const dropdownRef = useRef(null);
 
-	const handleItemSelect = (item) => {
-		let updatedItems;
-		if (selectedItems.includes(item)) {
-			updatedItems = selectedItems.filter(i => i !== item);
-		} else {
-			updatedItems = [...selectedItems, item];
-		}		
-		onSelect(updatedItems);
-	};
-	
+  const handleItemSelect = useCallback((item) => {
+    let updatedItems;
+    if (selectedItems.includes(item)) {
+      updatedItems = selectedItems.filter(i => i !== item);
+    } else {
+      updatedItems = [...selectedItems, item];
+    }
+    onSelect(updatedItems);
+  }, [onSelect, selectedItems]);
 
-  const renderList = (items) => (
+	const renderList = useCallback((items) => (
     <ul className="nav-list">
       {items
-        .filter(item => item.toLowerCase().includes(searchText.toLowerCase())) // Фильтруем элементы на основе текста поиска
+        .filter(item => item.toLowerCase().includes(searchText.toLowerCase()))
         .map(item => (
-          <li className="dropdown-list-item" key={item} onClick={() => handleItemSelect(item)}>
-            {item}
-            <IconCircle 
-              type="outlined" 
-              isSelected={selectedItems.includes(item)} 
-            />
-          </li>
+          <ListItem
+            key={item}
+            item={item}
+            isSelected={selectedItems.includes(item)}
+            onItemSelect={handleItemSelect}
+          />
         ))
       }
     </ul>
-  );
+  ), [handleItemSelect, searchText, selectedItems]);
 
 	// Скрываем стиль нижней части списка при малом количестве элементов (отсутствии скроллбара)
   useEffect(() => {

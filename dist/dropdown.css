@@ -87,3 +87,7 @@
 .location-dropdown .nav-list .dropdown-list-item:hover {
   background-color: rgba(2, 22, 45, 0.1);
 }
+
+.no-scrollbar::after {
+  display: none;
+}

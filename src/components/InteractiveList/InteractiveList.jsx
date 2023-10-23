@@ -19,7 +19,7 @@ export const InteractiveList = ({ selectedItems, onRemove }) => {
       {selectedItems.map((item) => (
         <div key={item} className="selected-item">
           {item}
-          <span className="close-btn" onClick={() => onRemove(item)}><img src={close}/></span>
+          <span className="close-btn" onClick={() => onRemove(item)} aria-label="Убрать элемент"><img src={close}/></span>
         </div>
       ))}
     </div>
