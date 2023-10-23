@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.0.0",
     "autoprefixer": "^10.4.16",
+    "classnames": "^2.3.2",
     "css-loader": "^6.8.1",
     "dragscroll": "^0.0.8",
     "gsap": "^3.12.2",

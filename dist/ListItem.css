@@ -1,0 +1,19 @@
+.dropdown-list-item {
+  padding: 12px 4px 12px 16px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.dropdown-list-item:last-child {
+  border-bottom: none;
+}
+.dropdown-list-item:hover {
+  background-color: rgba(2, 22, 45, 0.1);
+}
