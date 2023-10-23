@@ -1,10 +1,10 @@
 import 'dragscroll';
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { dragscroll } from '../../../dragscroll';
 import close from '../../assets/images/close.svg';
 import './interactiveList.scss';
 
-export const InteractiveList = ({ selectedItems, onRemove }) => {
+export const InteractiveList = memo(({ selectedItems, onRemove }) => {
 	if (selectedItems.length === 0) return null;
 	
 	useEffect(() => {
@@ -19,9 +19,9 @@ export const InteractiveList = ({ selectedItems, onRemove }) => {
       {selectedItems.map((item) => (
         <div key={item} className="selected-item">
           {item}
-          <span className="close-btn" onClick={() => onRemove(item)} aria-label="Убрать элемент"><img src={close}/></span>
+          <span className="close-btn" onClick={() => onRemove(item)} aria-label="Убрать элемент"><img src={close} alt="Крестик"/></span>
         </div>
       ))}
     </div>
   );
-};
+});
